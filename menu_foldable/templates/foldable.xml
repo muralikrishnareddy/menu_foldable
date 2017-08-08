@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="assets_backend" name="Foldable Menu backend sources" inherit_id="web.assets_backend">
+            <!-- Backend CSS sources -->
+            <xpath expr="//link[last()]" position="after">
+                <link href='/menu_foldable/static/src/css/backend/menu_foldable.css'
+                      type="text/css" rel='stylesheet'/>
+            </xpath>
+        </template>
+
+        <template id="menu_secondary" inherit_id="web.menu_secondary">
+            <!--<xpath expr="//div[contains(@class, 'oe_secondary_menu_section')]" position="attributes">
+                <attribute name="style">cursor: pointer;</attribute>
+            </xpath>-->
+            <xpath expr="//div[contains(@class, 'oe_secondary_menu_section')]" position="replace">
+                <div class="oe_secondary_menu_section"
+                     t-att-data-menu-xmlid="menu.get('xmlid')"
+                     style="cursor: pointer;">
+                    <t t-if="menu['children']">
+                        <a class="oe_secondary_menu_section_toggler oe_secondary_menu_section_opened">
+                            <t t-esc="menu['name']"/>
+                        </a>
+                    </t>
+                    <t t-if="not menu['children']"><t t-call="web.menu_link"/></t>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="inherit_webclient_bootstrap" inherit_id="web.webclient_bootstrap">
+            <xpath expr="//div[contains(@class, 'o_sub_menu')]" position="after">
+                <script type="text/javascript">
+                    $('.oe_secondary_menu_section').click(function() {
+                        if ($(this).next().attr('class') != 'oe_secondary_menu_section') {
+                            $(this).next().slideToggle(500);
+                            $(this).children('.oe_secondary_menu_section_toggler').toggleClass('oe_secondary_menu_section_opened');
+                        }
+                    });
+                </script>
+            </xpath>
+        </template>
+       
+    </data>
+</odoo>
