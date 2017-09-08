@@ -23,21 +23,25 @@
 {
     'name': 'Foldable Menu',
     'category': 'Extra Tools', 
-    'version': '10.0.1.1.0',
-    'summary': "To Fold and Collapse the Left side Menus in Odoo",
-    'description': 'no_warning',
+    'version': '1.0',
+    'description': """
+Foldable menus in Odoo.
+====================
+
+To Fold and Collapse the Left side Menus in Odoo
+
+    """,
     'author': 'Murali Krishna Reddy',
-    'contributors': [
-        'Murali Krishna Reddy',
-        'Alix Casari',
-    ],
     'website': 'http://www.credativ.in',
-    'sequence': 0,
+    'sequence':0,
     'depends': ['base', 'web'],
+    'images':['images/main_screenshot.png'],
     'data': [
-        'templates/foldable.xml',
+        'foldable_view.xml',
     ],
     'installable': True,
+    'auto_install': False,
+    'application': False,
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
